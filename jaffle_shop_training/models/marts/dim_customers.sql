@@ -50,6 +50,7 @@ final as (
         customers.last_name,
         customer_orders.first_order_date,
         customer_orders.most_recent_order_date,
+        customer_orders.number_of_orders,
         payment.lifetime_value
     from customers
 
