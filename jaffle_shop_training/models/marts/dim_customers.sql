@@ -6,7 +6,7 @@ with customers as (
 
     select
         *
-    from {{ ref('base_jaffle_shop_customers') }}
+    from {{ ref('stg_jaffle_shop_customers') }}
 
 ),
 
@@ -14,10 +14,17 @@ orders as (
 
     select
         *
-    from {{ ref('base_jaffle_shop_orders') }}
+    from {{ ref('stg_jaffle_shop_orders') }}
 
 ),
-
+payment as (
+    select
+        SUM(payment_amount) as lifetime_value,
+        customer_id
+    from {{ ref('fct_orders') }}
+    --where status = 'success'
+    group by customer_id
+),
 
 customer_orders as (
 
@@ -43,12 +50,12 @@ final as (
         customers.last_name,
         customer_orders.first_order_date,
         customer_orders.most_recent_order_date,
-        coalesce(customer_orders.number_of_orders, 0) as number_of_orders
-
+        payment.lifetime_value
     from customers
 
     left join customer_orders using (customer_id)
+    left join payment using (customer_id)
 
 )
 
-select * from final
+select * from final order by customer_id asc
