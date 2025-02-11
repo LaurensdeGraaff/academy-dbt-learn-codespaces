@@ -33,3 +33,5 @@ models: # look for the models
     # Config indicated by + and applies to all files under models/example/
     marts: # in the marts folder
       +materialized: table # materialize the models as table
+    staging: 
+      +materialized: view # materialize the models as view
