@@ -9,6 +9,14 @@ sources:
         identifier: customers 
       - name: orders
         identifier: orders
+        loaded_at: _etl_loaded_at
+        freshness: 
+          error_after:
+            count: 50000
+            period: hour
+          warn_after:
+            count: 12
+            period: hour
 
     
     
