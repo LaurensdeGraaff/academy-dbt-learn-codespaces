@@ -29,7 +29,8 @@ final as (
         customer_id,
         order_id,
         payment_status,
-        payment_amount
+        payment_amount,
+        order_status
     from orders
 
     left join payment using (order_id)

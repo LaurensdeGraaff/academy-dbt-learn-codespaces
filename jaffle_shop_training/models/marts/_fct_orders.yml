@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: fct_orders
+    columns:
+      - name: order_id
+        data_tests:
+          #- unique
+          - not_null
+      - name: order_status
+        data_tests:
+          - accepted_values:
+              values: ['returned','completed','shipped','return_pending','placed']
