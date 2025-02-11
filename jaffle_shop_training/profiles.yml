@@ -7,7 +7,7 @@ my_new_project:
       threads: 4
       type: snowflake
       warehouse: transforming
-      user: <fill-me-in>
-      password: <fill-me-in>
-      schema: <fill-me-in>
+      user: learner_lsheppard
+      password: dbt2024
+      schema: dbt_lgraaff
   target: dev
