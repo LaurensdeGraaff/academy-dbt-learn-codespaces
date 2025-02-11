@@ -2,8 +2,10 @@ version: 2
 
 sources:
   - name: stripe
+    description: Stripe payment data
     database: raw
     schema: stripe 
     tables:
       - name: payment
         identifier: payment
+        description: One row represents one payment - multiple payments can be part of the same order
