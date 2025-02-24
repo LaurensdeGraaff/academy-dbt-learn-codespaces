@@ -30,6 +30,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models: # look for the models
   jaffle_shop_training: # in this specific project
+    +dbt-osmosis: "_{model}.yml"
     # Config indicated by + and applies to all files under models/example/
     marts: # in the marts folder
       +materialized: table # materialize the models as table
