@@ -5,7 +5,8 @@
 with customers as (
 
     select
-        *
+        *,
+        {{ dbt_utils.generate_surrogate_key(['first_name', 'last_name']) }} as name_sk
     from {{ ref('stg_jaffle_shop_customers') }}
 
 ),
@@ -46,6 +47,7 @@ final as (
 
     select
         customers.customer_id,
+        customers.name_sk,
         customers.first_name,
         customers.last_name,
         customer_orders.first_order_date,
